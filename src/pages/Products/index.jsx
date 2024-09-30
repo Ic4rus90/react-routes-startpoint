@@ -11,7 +11,7 @@ function ProductsPage({ products }) {
                     <li key={index}>
                         <h3> {product.name} </h3>
                         <h4> {product.type} </h4>
-                        <Link to={`/products/${index}`}/>
+                        <Link to={`/products/${product.id}`}> View Product </Link>
                     </li>
                     );
                 })}

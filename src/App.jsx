@@ -1,7 +1,7 @@
 import { appsData, productsData } from "./data.js";
 import "./App.css";
 import { useState } from "react";
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 
 import ProductsPage from "./pages/Products/index.jsx";
 import Home from "./pages/Home/index.jsx";
@@ -11,6 +11,7 @@ import ViewProductPage from "./pages/ViewProduct/index.jsx";
 function App() {
   const [products] = useState(productsData)
   const [apps] = useState(appsData)
+  const navigate = useNavigate()
 
   console.log({ products, apps})
 
@@ -28,9 +29,15 @@ function App() {
         <h1>Apple Shop</h1>
         <nav>
           <ul>
-            <li><Link to="/"/> Home </li>
-            <li><Link to="/products"/> Products </li>
-            <li><Link to="/apps" /> Apps </li>
+            <li>
+              <Link to="/"> Home </Link>
+              </li>
+            <li>
+              <Link to="/products"> Products </Link> 
+              </li>
+            <li>
+              <Link to="/apps" > Apps </Link>
+              </li>
           </ul>
         </nav>
       </header>
@@ -48,9 +55,12 @@ function App() {
           />
         <Route
           path="/apps"
-          element={<AppsPage />}
+          element={<AppsPage apps={apps}/>}
         />
       </Routes>
+      <button onClick={() => navigate("/")}> Home </button>
+      <button onClick={() => navigate("/products")}> Products </button>
+      <button onClick={() => navigate("/apps")}> Apps </button>
     </div>
   );
 }
